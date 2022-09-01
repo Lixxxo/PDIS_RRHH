@@ -64,49 +64,49 @@ class Employee:
         return self._phone_number
 
     @rut.setter
-    def rut(self, rut):
-        self._rut = rut
+    def rut(self, value):
+        self._rut = value
 
     @dv.setter
-    def dv(self, dv):
-        self._dv = dv
+    def dv(self, value):
+        self._dv = value
 
     @first_name.setter
-    def first_name(self, first_name):
-        self._first_name = first_name
+    def first_name(self, value):
+        self._first_name = value
 
     @second_name.setter
-    def second_name(self, second_name):
-        self._second_name = second_name
+    def second_name(self, value):
+        self._second_name = value
 
     @paternal_last_name.setter
-    def paternal_last_name(self, paternal_last_name):
-        self._paternal_last_name = paternal_last_name
+    def paternal_last_name(self, value):
+        self._paternal_last_name = value
 
     @maternal_last_name.setter
-    def maternal_last_name(self, maternal_last_name):
-        self._maternal_last_name = maternal_last_name
+    def maternal_last_name(self, value):
+        self._maternal_last_name = value
 
     @nationality.setter
-    def nationality(self, nationality):
-        self._nationality = nationality
+    def nationality(self, value):
+        self._nationality = value
 
     @birth_date.setter
-    def birth_date(self, birth_date):
-        self._birth_date = birth_date
+    def birth_date(self, value):
+        self._birth_date = value
 
     @title.setter
-    def title(self, title):
-        self._title = title
+    def title(self, value):
+        self._title = value
 
     @address.setter
-    def address(self, address):
-        self._address = address
+    def address(self, value):
+        self._address = value
 
     @mail.setter
-    def mail(self, mail):
-        self._mail = mail
+    def mail(self, value):
+        self._mail = value
 
     @phone_number.setter
-    def phone_number(self, phone_number):
-        self._phone_number = phone_number
+    def phone_number(self, value):
+        self._phone_number = value
