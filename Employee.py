@@ -1,5 +1,5 @@
-# Single worker class
-class Worker:
+# Single employee class
+class Employee:
     def __init__(self, rut, dv, first_name, second_name, paternal_last_name, maternal_last_name, nationality,
                  birth_date, title, address, mail, phone_number):
         self._rut = rut
