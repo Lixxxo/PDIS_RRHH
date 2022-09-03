@@ -3,17 +3,17 @@ class Employee:
     def __init__(self, no_digit_rut: int, first_name: str, second_name: str,
                  paternal_last_name: str, maternal_last_name: str, nationality: str, birth_date: str,
                  title: str, address: str, mail: str, phone_number: str):
-        self.no_digit_rut = no_digit_rut
-        self.first_name = first_name
-        self.second_name = second_name
-        self.paternal_last_name = paternal_last_name
-        self.maternal_last_name = maternal_last_name
-        self.nationality = nationality
-        self.birth_date = birth_date
-        self.title = title
-        self.address = address
-        self.mail = mail
-        self.phone_number = phone_number
+        self.__no_digit_rut = no_digit_rut
+        self.__first_name = first_name
+        self.__second_name = second_name
+        self.__paternal_last_name = paternal_last_name
+        self.__maternal_last_name = maternal_last_name
+        self.__nationality = nationality
+        self.__birth_date = birth_date
+        self.__title = title
+        self.__address = address
+        self.__mail = mail
+        self.__phone_number = phone_number
 
     @property
     def no_digit_rut(self):
@@ -108,7 +108,7 @@ class Employee:
         # https://gist.github.com/rbonvall/464824
         from itertools import cycle
 
-        reversed_digits = map(int, reversed(str(self.no_digit_rut)))
+        reversed_digits = map(int, reversed(str(self.__no_digit_rut)))
         factors = cycle(range(2, 8))
         s = sum(d * f for d, f in zip(reversed_digits, factors))
 
@@ -121,13 +121,10 @@ class Employee:
 
     @property
     def rut(self):
-        return str(self.no_digit_rut) + "-" + str(self.rut_digit)
+        return str(self.__no_digit_rut) + "-" + str(self.rut_digit)
 
     @property
-    def full_name(self):
+    def fullname(self):
         _fullname = (self.__first_name + " " + self.__second_name + " " +
                      self.__paternal_last_name + " " + self.__maternal_last_name)
         return _fullname
-
-
-
