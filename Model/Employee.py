@@ -1,33 +1,39 @@
 # Single employee class
 class Employee:
-    def __init__(self, identifier, rut, dv, full_name,
-                 nationality, birth_date, title, address, mail, phone_number):
-        self.__identifier = identifier
-        self.__rut = rut
-        self.__dv = dv
-        self.__full_name = full_name
-        self.__nationality = nationality
-        self.__birth_date = birth_date
-        self.__title = title
-        self.__address = address
-        self.__mail = mail
-        self.__phone_number = phone_number
+    def __init__(self, no_digit_rut: int, first_name: str, second_name: str,
+                 paternal_last_name: str, maternal_last_name: str, nationality: str, birth_date: str,
+                 title: str, address: str, mail: str, phone_number: str):
+        self.no_digit_rut = no_digit_rut
+        self.first_name = first_name
+        self.second_name = second_name
+        self.paternal_last_name = paternal_last_name
+        self.maternal_last_name = maternal_last_name
+        self.nationality = nationality
+        self.birth_date = birth_date
+        self.title = title
+        self.address = address
+        self.mail = mail
+        self.phone_number = phone_number
 
     @property
-    def identifier(self):
-        return self.__identifier
+    def no_digit_rut(self):
+        return self.__no_digit_rut
 
     @property
-    def rut(self):
-        return self.__rut
+    def first_name(self):
+        return self.__first_name
 
     @property
-    def dv(self):
-        return self.__dv
+    def second_name(self):
+        return self.__second_name
 
     @property
-    def full_name(self):
-        return self.__full_name
+    def paternal_last_name(self):
+        return self.__paternal_last_name
+
+    @property
+    def maternal_last_name(self):
+        return self.__maternal_last_name
 
     @property
     def nationality(self):
@@ -53,21 +59,25 @@ class Employee:
     def phone_number(self):
         return self.__phone_number
 
-    @identifier.setter
-    def identifier(self, value):
-        self.__identifier = value
+    @no_digit_rut.setter
+    def no_digit_rut(self, value):
+        self.__no_digit_rut = value
 
-    @rut.setter
-    def rut(self, value):
-        self.__rut = value
+    @first_name.setter
+    def first_name(self, value):
+        self.__first_name = value
 
-    @dv.setter
-    def dv(self, value):
-        self.__dv = value
+    @second_name.setter
+    def second_name(self, value):
+        self.__second_name = value
 
-    @full_name.setter
-    def full_name(self, value):
-        self.__full_name = value
+    @paternal_last_name.setter
+    def paternal_last_name(self, value):
+        self.__paternal_last_name = value
+
+    @maternal_last_name.setter
+    def maternal_last_name(self, value):
+        self.__maternal_last_name = value
 
     @nationality.setter
     def nationality(self, value):
@@ -92,3 +102,32 @@ class Employee:
     @phone_number.setter
     def phone_number(self, value):
         self.__phone_number = value
+
+    @property
+    def rut_digit(self):
+        # https://gist.github.com/rbonvall/464824
+        from itertools import cycle
+
+        reversed_digits = map(int, reversed(str(self.no_digit_rut)))
+        factors = cycle(range(2, 8))
+        s = sum(d * f for d, f in zip(reversed_digits, factors))
+
+        dv = (-s) % 11
+
+        if dv == 10:
+            dv = "K"
+
+        return dv
+
+    @property
+    def rut(self):
+        return str(self.no_digit_rut) + "-" + str(self.rut_digit)
+
+    @property
+    def full_name(self):
+        _fullname = (self.__first_name + " " + self.__second_name + " " +
+                     self.__paternal_last_name + " " + self.__maternal_last_name)
+        return _fullname
+
+
+
