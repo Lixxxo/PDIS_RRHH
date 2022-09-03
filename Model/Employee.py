@@ -1,96 +1,94 @@
 # Single employee class
-
-
 class Employee:
     def __init__(self, identifier, rut, dv, full_name,
                  nationality, birth_date, title, address, mail, phone_number):
-        self._identifier = identifier
-        self._rut = rut
-        self._dv = dv
-        self._full_name = full_name
-        self._nationality = nationality
-        self._birth_date = birth_date
-        self._title = title
-        self._address = address
-        self._mail = mail
-        self._phone_number = phone_number
+        self.__identifier = identifier
+        self.__rut = rut
+        self.__dv = dv
+        self.__full_name = full_name
+        self.__nationality = nationality
+        self.__birth_date = birth_date
+        self.__title = title
+        self.__address = address
+        self.__mail = mail
+        self.__phone_number = phone_number
 
     @property
     def identifier(self):
-        return self._identifier
+        return self.__identifier
 
     @property
     def rut(self):
-        return self._rut
+        return self.__rut
 
     @property
     def dv(self):
-        return self._dv
+        return self.__dv
 
     @property
     def full_name(self):
-        return self._full_name
+        return self.__full_name
 
     @property
     def nationality(self):
-        return self._nationality
+        return self.__nationality
 
     @property
     def birth_date(self):
-        return self._birth_date
+        return self.__birth_date
 
     @property
     def title(self):
-        return self._title
+        return self.__title
 
     @property
     def address(self):
-        return self._address
+        return self.__address
 
     @property
     def mail(self):
-        return self._mail
+        return self.__mail
 
     @property
     def phone_number(self):
-        return self._phone_number
+        return self.__phone_number
 
     @identifier.setter
     def identifier(self, value):
-        self._identifier = value
+        self.__identifier = value
 
     @rut.setter
     def rut(self, value):
-        self._rut = value
+        self.__rut = value
 
     @dv.setter
     def dv(self, value):
-        self._dv = value
+        self.__dv = value
 
     @full_name.setter
     def full_name(self, value):
-        self._full_name = value
+        self.__full_name = value
 
     @nationality.setter
     def nationality(self, value):
-        self._nationality = value
+        self.__nationality = value
 
     @birth_date.setter
     def birth_date(self, value):
-        self._birth_date = value
+        self.__birth_date = value
 
     @title.setter
     def title(self, value):
-        self._title = value
+        self.__title = value
 
     @address.setter
     def address(self, value):
-        self._address = value
+        self.__address = value
 
     @mail.setter
     def mail(self, value):
-        self._mail = value
+        self.__mail = value
 
     @phone_number.setter
     def phone_number(self, value):
-        self._phone_number = value
+        self.__phone_number = value
