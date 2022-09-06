@@ -104,6 +104,6 @@ pip-selfcheck.json
 .idea/**/gradle.xml
 .idea/**/libraries
 
-
+db.json
 # idea folder, uncomment if you don't need it
 # .idea
