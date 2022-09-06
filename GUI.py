@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter.ttk import Button
-from Constants import APP_TITLE
+from resources.Constants import APP_TITLE
 
 
 def show_window():
