@@ -55,15 +55,16 @@ def read_linking_file():
         for j in range(5):
             c = Contract(
                 contract_number=j + 1,
-                employee_rut=_rut,
-                employee_fullname=_name,
+                employee_rut=e.rut,
+                employee_fullname=e.fullname,
                 position="",
                 salary="",
                 project="",
                 contract_type="",
                 workday="",
                 start_date="",
-                finish_date=""
+                finish_date="",
+                validity=True
             )
             c = c.__dict__()
 
