@@ -4,7 +4,7 @@ import datetime
 # Single contract class
 class Contract:
     def __init__(self, contract_number, employee_rut, employee_fullname, position, salary, project, contract_type,
-                 workday, start_date, finish_date):
+                 workday, start_date, finish_date, validity):
         self.__contract_number = contract_number
         self.__employee_rut = employee_rut
         self.__employee_fullname = employee_fullname
@@ -15,6 +15,7 @@ class Contract:
         self.__workday = workday
         self.__start_date = start_date
         self.__finish_date = finish_date
+        self.__validity = validity
 
     @property
     def contract_number(self):
@@ -58,7 +59,7 @@ class Contract:
 
     @property
     def validity(self):
-        return datetime.datetime.now() > self.__finish_date
+        return self.__validity
 
     @contract_number.setter
     def contract_number(self, value):
@@ -100,9 +101,13 @@ class Contract:
     def finish_date(self, value):
         self.__finish_date = value
 
+    @validity.setter
+    def validity(self, value):
+        self.__validity = value
+
     def __dict__(self):
         return {"contract_number": self.__contract_number, "employee_rut": self.__employee_rut,
                 "employee_fullname": self.__employee_fullname, "position": self.__position,
                 "salary": self.__salary, "project": self.__project, "contract_type": self.__contract_type,
                 "workday": self.__workday, "start_date": self.__start_date, "finish_date": self.__finish_date,
-                "validity": self.validity}
+                "validity": self.__validity}
