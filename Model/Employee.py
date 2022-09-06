@@ -130,6 +130,8 @@ class Employee:
         return _fullname
 
     def __dict__(self):
-        return {"name": self.fullname, "rut": self.rut, "nationality": self.__nationality,
+        return {"first_name": self.__first_name, "second_name": self.__second_name,
+                "paternal_last_name": self.__paternal_last_name, "maternal_last_name": self.__maternal_last_name,
+                "rut": self.rut, "nationality": self.__nationality,
                 "birth_date": self.__birth_date, "tittle": self.__title, "address": self.__address,
                 "mail": self.__mail, "phone_number": self.__phone_number}
