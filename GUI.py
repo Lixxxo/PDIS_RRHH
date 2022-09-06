@@ -6,6 +6,7 @@ window = tk.Tk()
 
 # Lock the size of the window.
 window.resizable(width=False, height=False)
+window.iconbitmap("resources/RRHH.ico")
 
 # Set the window title
 window.title(APP_TITLE)
