@@ -2,7 +2,10 @@ import GUI
 
 
 def run():
-    GUI.show_window()
+    # Todo: Change data to json file.
+    data = {"employees": []}
+
+    GUI.show_window(data)
 
 
 if __name__ == "__main__":
