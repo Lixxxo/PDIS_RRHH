@@ -1,9 +1,10 @@
 import GUI
+from json import load
 
 
 def run():
-    # Todo: Change data to json file.
-    data = {"employees": []}
+    with open('db.json') as f:
+        data = load(f)
 
     GUI.show_window(data)
 
