@@ -8,7 +8,7 @@ from Requirements.RRHH_impl import (
     generate_report)
 
 
-def show_window():
+def show_window(data: {}):
     # Declare the window.
     window = tk.Tk()
 
