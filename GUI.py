@@ -2,14 +2,18 @@ import tkinter as tk
 from tkinter.ttk import Button, Style, Treeview
 from resources.Constants import (
     APP_TITLE)
-from Requirements.RRHH_impl import (
-    read_linking_file,
-    read_unlinking_file,
-    generate_report)
+
+from Utils.Fake_data import fake_db
 
 # Declare the window.
 window = tk.Tk()
+# Lock the size of the window.
+window.resizable(width=False, height=False)
+# Set iconbitmap
+window.iconbitmap("resources/RRHH.ico")
 
+# Set the window title
+window.title(APP_TITLE)
 # Set style
 style = Style()
 
@@ -78,42 +82,16 @@ _button = Button(button_frame, text="Leer archivo \nde desvinculaciones")
 # _button.grid(row=0, column=1, padx=10, pady=10, sticky=tk.E)
 _button.pack(fill="both")
 
-# _button = Button(button_frame, text="Generar \nreporte")
-# _button.grid(row=0, column=2, padx=10, pady=10)
-
-# Lock the size of the window.
-# window.resizable(width=False, height=False)
-window.iconbitmap("resources/RRHH.ico")
-
-# Set the window title
-window.title(APP_TITLE)
-
-# Declare the read linking file button.
-linking_button = Button(window,
-                        text="Leer archivo\nde contrataciones",
-                        command=read_linking_file)
-
-# Declare the read unlinking file button.
-unlinking_button = Button(window,
-                          text="Leer archivo\nde desvinculaciones",
-                          command=read_unlinking_file)
-
-# Declare the export report button.
-generate_report_button = Button(window,
-                                text="Generar reporte de pana",
-                                command=generate_report)
-
-# Add the buttons to the grid.
-# linking_button.grid(row=0, column=0, sticky="W", pady=2)
-# unlinking_button.grid(row=0, column=2, sticky="E", pady=2)
-# generate_report_button.grid(row=1, column=1, sticky="W", pady=2)
+# TODO: Remove
+_button = Button(window, text="Generar \nbase de datos", command=fake_db)
+_button.pack(anchor="s")
 
 
 def show_window(data):
     # Add data to the screen.
+
     global count
     count = 0
-
     for record in data['employees']:
         if count % 2 == 0:
             my_tree.insert(parent='', index='end', iid=count, text='', values=(record['first_name'], record['paternal_last_name'], record['rut']),
@@ -126,3 +104,4 @@ def show_window(data):
 
     # Run the main window.
     window.mainloop()
+
