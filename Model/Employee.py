@@ -125,8 +125,12 @@ class Employee:
 
     @property
     def fullname(self):
-        _fullname = (self.__first_name + " " + self.__second_name + " " +
-                     self.__paternal_last_name + " " + self.__maternal_last_name)
+        if self.__second_name == "":
+            _fullname = (self.__first_name + " " + self.__paternal_last_name + " " + self.__maternal_last_name)
+        else:
+            _fullname = (self.__first_name + " " + self.__second_name + " " +
+                         self.__paternal_last_name + " " + self.__maternal_last_name)
+
         return _fullname
 
     def __dict__(self):
