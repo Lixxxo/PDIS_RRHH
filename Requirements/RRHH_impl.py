@@ -1,36 +1,31 @@
-"""el joeloop trabaja de pana acá
-haga lo que estime conveniente con los tipos de datos
-y cualquier weaita que se le ocurra
-todo lo que está escrito es una recomendación y debe ser tratada como tal
-
-el metodo read_linking_file tiene un ejemplo para utilizar
-json dumps con las clases del modelo, como guia
-lo hice ahi porque ya esta asociado a un boton en el gui
-atte Lixo xoxoxoxo <3
-"""
 from Model.Employee import Employee
 from Model.Contract import Contract
 
-#region Requerimiento 2
+
+# region Requerimiento 2
 
 def add_employee():
     pass
 
+
 def edit_employee():
     pass
+
 
 def add_contract(rut: str):
     pass
 
+
 def edit_contract(rut: str):
     pass
 
-#endregion
 
-#region Requerimiento 3
+# endregion
+
+# region Requerimiento 3
 
 def read_linking_file():
-    print("pasa")
+    global c
     import json
     from random import randint, choice
     names = ["Juan", "Ítalo", "Alejandro", "Evelyn"]
@@ -80,16 +75,16 @@ def read_linking_file():
 
     pass
 
+
 def read_unlinking_file():
-    print("te traspasa")
     pass
 
-#endregion
 
-#region Requerimiento 4
+# endregion
+
+# region Requerimiento 4
 
 def generate_report():
-    print("vuelve a pasar")
     pass
 
-#endregion
+# endregion
