@@ -29,21 +29,30 @@ upper_container = Frame(root)
 upper_container.pack(pady=10, padx=10)
 
 # Handle Treeview of employees
+
+# Declare left frame.
 left_frame = LabelFrame(upper_container, text="Trabajadores")
 left_frame.pack(pady=10, padx=10, side=LEFT)
 
+# Declare Treeview Frame.
 treeview_frame = Frame(left_frame)
 treeview_frame.pack(pady=10)
 
+# Declare Treeview Scrollbar.
 treeview_scroll = Scrollbar(treeview_frame)
-treeview_scroll.pack(pady=10, side=RIGHT)
+treeview_scroll.pack(fill=Y, side=RIGHT)
 
+# Declare Employees Treeview.
 treeview_employees = Treeview(treeview_frame, yscrollcommand=treeview_scroll.set, selectmode="extended", padding="5px")
 treeview_employees.pack()
 
+# Configure the Scrollbar.
+treeview_scroll.config(command=treeview_employees.yview)
+
+# Define Columns
 treeview_employees['columns'] = ('First Name', 'Last Name', 'Rut')
 
-# Create columns
+# Format Columns
 treeview_employees.column('#0', width=0, stretch=NO)
 treeview_employees.column("First Name", anchor=W, width=140)
 treeview_employees.column("Last Name", anchor=W, width=140)
@@ -127,21 +136,30 @@ _button = Button(buttons_frame, text="Eliminar")
 _button.grid(row=0, column=2, padx=10, pady=10)
 
 # Handle Treeview of contracts.
+
+# Declare right Frame.
 right_frame = LabelFrame(upper_container, text="Contratos")
 right_frame.pack(pady=10, padx=10, side=RIGHT)
 
+# Declare Treeview Frame.
 treeview_frame = Frame(right_frame)
 treeview_frame.pack(pady=10)
 
+# Declare Treeview Scrollbar.
 treeview_scroll = Scrollbar(treeview_frame)
-treeview_scroll.pack(pady=10, side=RIGHT)
+treeview_scroll.pack(pady=10, side=RIGHT, fill=Y)
 
+# Declare Contracts Treeview.
 treeview_contracts = Treeview(treeview_frame, yscrollcommand=treeview_scroll.set, selectmode="extended", padding="5px")
 treeview_contracts.pack()
 
+# Configure the Scrollbar.
+treeview_scroll.config(command=treeview_contracts.yview)
+
+# Define Columns
 treeview_contracts['columns'] = ('Contract ID', 'Position', 'Project')
 
-# Create columns
+# Format Columns
 treeview_contracts.column('#0', width=0, stretch=NO)
 treeview_contracts.column("Contract ID", anchor=W, width=140)
 treeview_contracts.column("Position", anchor=W, width=140)
