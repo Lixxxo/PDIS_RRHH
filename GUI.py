@@ -225,11 +225,11 @@ _button = Button(buttons_frame, text="Eliminar")
 _button.grid(row=0, column=2, padx=10, pady=10)
 
 
-def show_window(employees_data, contracts_data):
+def show_window(data):
     # Add data to the screen.
 
     count = 0
-    for record in employees_data['employees']:
+    for record in data['employees']:
         if count % 2 == 0:
             treeview_employees.insert(parent='', index='end', iid=count, text='',
                                       values=(record['first_name'], record['paternal_last_name'], record['rut']),
@@ -241,7 +241,7 @@ def show_window(employees_data, contracts_data):
         # Increment counter
         count += 1
     count += 1
-    for record in contracts_data['contracts']:
+    for record in data['contracts']:
         if count % 2 == 0:
             treeview_contracts.insert(parent='', index='end', iid=count, text='', values=(record['contract_number'],
                                                                                           record['position'],
