@@ -38,26 +38,26 @@ treeview_frame.pack(pady=10)
 treeview_scroll = Scrollbar(treeview_frame)
 treeview_scroll.pack(pady=10, side=RIGHT)
 
-treeview = Treeview(treeview_frame, yscrollcommand=treeview_scroll.set, selectmode="extended", padding="5px")
-treeview.pack()
+treeview_employees = Treeview(treeview_frame, yscrollcommand=treeview_scroll.set, selectmode="extended", padding="5px")
+treeview_employees.pack()
 
-treeview['columns'] = ('First Name', 'Last Name', 'Rut')
+treeview_employees['columns'] = ('First Name', 'Last Name', 'Rut')
 
 # Create columns
-treeview.column('#0', width=0, stretch=NO)
-treeview.column("First Name", anchor=W, width=140)
-treeview.column("Last Name", anchor=W, width=140)
-treeview.column("Rut", anchor=W, width=140)
+treeview_employees.column('#0', width=0, stretch=NO)
+treeview_employees.column("First Name", anchor=W, width=140)
+treeview_employees.column("Last Name", anchor=W, width=140)
+treeview_employees.column("Rut", anchor=W, width=140)
 
 # Creating Headings
-treeview.heading("#0", text="", anchor=W)
-treeview.heading("First Name", text="Nombre", anchor=W)
-treeview.heading("Last Name", text="Apellido", anchor=W)
-treeview.heading("Rut", text="Rut", anchor=W)
+treeview_employees.heading("#0", text="", anchor=W)
+treeview_employees.heading("First Name", text="Nombre", anchor=W)
+treeview_employees.heading("Last Name", text="Apellido", anchor=W)
+treeview_employees.heading("Rut", text="Rut", anchor=W)
 
 # Add striped row tags.
-treeview.tag_configure('oddrow', background="White")
-treeview.tag_configure('evenrow', background="lightblue")
+treeview_employees.tag_configure('oddrow', background="White")
+treeview_employees.tag_configure('evenrow', background="lightblue")
 
 # Add data entry boxes.
 data_frame = LabelFrame(left_frame, text="Datos")
@@ -136,26 +136,26 @@ treeview_frame.pack(pady=10)
 treeview_scroll = Scrollbar(treeview_frame)
 treeview_scroll.pack(pady=10, side=RIGHT)
 
-treeview = Treeview(treeview_frame, yscrollcommand=treeview_scroll.set, selectmode="extended", padding="5px")
-treeview.pack()
+treeview_contracts = Treeview(treeview_frame, yscrollcommand=treeview_scroll.set, selectmode="extended", padding="5px")
+treeview_contracts.pack()
 
-treeview['columns'] = ('Contract ID', 'Position', 'Project')
+treeview_contracts['columns'] = ('Contract ID', 'Position', 'Project')
 
 # Create columns
-treeview.column('#0', width=0, stretch=NO)
-treeview.column("Contract ID", anchor=W, width=140)
-treeview.column("Position", anchor=W, width=140)
-treeview.column("Project", anchor=W, width=140)
+treeview_contracts.column('#0', width=0, stretch=NO)
+treeview_contracts.column("Contract ID", anchor=W, width=140)
+treeview_contracts.column("Position", anchor=W, width=140)
+treeview_contracts.column("Project", anchor=W, width=140)
 
 # Creating Headings
-treeview.heading("#0", text="", anchor=W)
-treeview.heading("Contract ID", text="ID", anchor=W)
-treeview.heading("Position", text="Puesto", anchor=W)
-treeview.heading("Project", text="Proyecto", anchor=W)
+treeview_contracts.heading("#0", text="", anchor=W)
+treeview_contracts.heading("Contract ID", text="ID", anchor=W)
+treeview_contracts.heading("Position", text="Puesto", anchor=W)
+treeview_contracts.heading("Project", text="Proyecto", anchor=W)
 
 # Add striped row tags.
-treeview.tag_configure('oddrow', background="White")
-treeview.tag_configure('evenrow', background="lightblue")
+treeview_contracts.tag_configure('oddrow', background="White")
+treeview_contracts.tag_configure('evenrow', background="lightblue")
 
 # Add data entry boxes.
 data_frame = LabelFrame(right_frame, text="Datos")
@@ -184,7 +184,7 @@ sal_entry.grid(row=1, column=3, padx=10, pady=10)
 pro_label = Label(data_frame, text="Proyecto")
 pro_label.grid(row=2, column=0, padx=10, pady=10)
 pro_entry = Entry(data_frame)
-n_entry.grid(row=2, column=1, padx=10, pady=10)
+pro_entry.grid(row=2, column=1, padx=10, pady=10)
 
 ct_label = Label(data_frame, text="Tipo de Contrato")
 ct_label.grid(row=2, column=2, padx=10, pady=10)
@@ -224,24 +224,36 @@ _button.grid(row=0, column=1, padx=10, pady=10)
 _button = Button(buttons_frame, text="Eliminar")
 _button.grid(row=0, column=2, padx=10, pady=10)
 
-def show_window(data):
+
+def show_window(employees_data, contracts_data):
     # Add data to the screen.
-    root.mainloop()
 
-
-'''
-    global count
     count = 0
-    for record in data['employees']:
+    for record in employees_data['employees']:
         if count % 2 == 0:
-            my_tree.insert(parent='', index='end', iid=count, text='', values=(record['first_name'], record['paternal_last_name'], record['rut']),
-                           tags=('evenrow',))
+            treeview_employees.insert(parent='', index='end', iid=count, text='',
+                                      values=(record['first_name'], record['paternal_last_name'], record['rut']),
+                                      tags=('evenrow',))
         else:
-            my_tree.insert(parent='', index='end', iid=count, text='', values=(record['first_name'], record['paternal_last_name'], record['rut']),
-                           tags=('oddrow',))
+            treeview_employees.insert(parent='', index='end', iid=count, text='',
+                                      values=(record['first_name'], record['paternal_last_name'], record['rut']),
+                                      tags=('oddrow',))
+        # Increment counter
+        count += 1
+    count += 1
+    for record in contracts_data['contracts']:
+        if count % 2 == 0:
+            treeview_contracts.insert(parent='', index='end', iid=count, text='', values=(record['contract_number'],
+                                                                                          record['position'],
+                                                                                          record['project']),
+                                      tags=('evenrow',))
+        else:
+            treeview_contracts.insert(parent='', index='end', iid=count, text='', values=(record['contract_number'],
+                                                                                          record['position'],
+                                                                                          record['project']),
+                                      tags=('oddrow',))
         # Increment counter
         count += 1
 
     # Run the main window.
-    
-'''
+    root.mainloop()
