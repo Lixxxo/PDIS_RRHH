@@ -201,19 +201,21 @@ treeview_contracts.pack(fill=X, padx=10)
 treeview_scroll.config(command=treeview_contracts.yview)
 
 # Define Columns
-treeview_contracts['columns'] = ('Contract ID', 'Position', 'Project')
+treeview_contracts['columns'] = ('Contract ID', 'Position', 'Project', 'Validity')
 
 # Format Columns
 treeview_contracts.column('#0', width=0, stretch=NO)
 treeview_contracts.column("Contract ID", anchor=W, width=140)
 treeview_contracts.column("Position", anchor=W, width=140)
 treeview_contracts.column("Project", anchor=W, width=140)
+treeview_contracts.column("Validity", anchor=W, width=140)
 
 # Creating Headings
 treeview_contracts.heading("#0", text="", anchor=W)
 treeview_contracts.heading("Contract ID", text="ID", anchor=W)
 treeview_contracts.heading("Position", text="Puesto", anchor=W)
 treeview_contracts.heading("Project", text="Proyecto", anchor=W)
+treeview_contracts.heading("Validity", text="Vigencia", anchor=W)
 
 # Add striped row tags.
 treeview_contracts.tag_configure('odd-row', background="White")
