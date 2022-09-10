@@ -127,7 +127,7 @@ pnm_entry.grid(row=5, column=3, padx=10, pady=10)
 
 
 # Select Data
-def select_data():
+def select_employee_data():
     # Clear entry boxes.
     fn_entry.delete(0, END)
     sn_entry.delete(0, END)
@@ -166,7 +166,7 @@ def select_data():
 buttons_frame = LabelFrame(left_frame, text="Acciones")
 buttons_frame.pack(fill="both", expand=True, padx=10, pady=10)
 
-update_employee_button = Button(buttons_frame, text="Actualizar", command=select_data)
+update_employee_button = Button(buttons_frame, text="Actualizar", command=select_employee_data)
 update_employee_button.grid(row=0, column=0, padx=10, pady=10)
 
 add_employee_button = Button(buttons_frame, text="Agregar")
@@ -269,11 +269,46 @@ v_label.grid(row=4, column=2, padx=10, pady=10)
 v_entry = Entry(data_frame)
 v_entry.grid(row=4, column=3, padx=10, pady=10)
 
+
+# Select Data
+def select_contract_data():
+    # Clear entry boxes.
+    er_entry.delete(0, END)
+    en_entry.delete(0, END)
+    pos_entry.delete(0, END)
+    sal_entry.delete(0, END)
+    pro_entry.delete(0, END)
+    ct_entry.delete(0, END)
+    w_entry.delete(0, END)
+    sd_entry.delete(0, END)
+    fd_entry.delete(0, END)
+    v_entry.delete(0, END)
+
+    # Grab data Number
+    selected = treeview_contracts.focus()
+
+    # Grab data Values
+    values = treeview_contracts.item(selected, 'values')
+
+    # Output to entry boxes
+
+    er_entry.insert(0, values[1])
+    en_entry.insert(0, values[2])
+    pos_entry.insert(0, values[3])
+    sal_entry.insert(0, values[4])
+    pro_entry.insert(0, values[5])
+    ct_entry.insert(0, values[6])
+    w_entry.insert(0, values[7])
+    sd_entry.insert(0, values[8])
+    fd_entry.insert(0, values[9])
+    v_entry.insert(0, values[10])
+
+
 # Add buttons.
 buttons_frame = LabelFrame(right_frame, text="Acciones")
 buttons_frame.pack(fill="both", expand=False, padx=10, pady=10)
 
-update_contract_button = Button(buttons_frame, text="Actualizar")
+update_contract_button = Button(buttons_frame, text="Actualizar", command=select_contract_data)
 update_contract_button.grid(row=0, column=0, padx=10, pady=10)
 
 add_contract_button = Button(buttons_frame, text="Agregar")
@@ -308,7 +343,7 @@ def show_window(data):
         else:
             treeview_employees.insert(parent='',
                                       index='end',
-                                      iid=str(count), 
+                                      iid=str(count),
                                       text='',
                                       values=(record['first_name'],
                                               record['second_name'],
