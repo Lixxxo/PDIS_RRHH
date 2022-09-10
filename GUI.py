@@ -48,19 +48,21 @@ treeview_employees.pack(fill=X, padx=10)
 treeview_scroll.config(command=treeview_employees.yview)
 
 # Define Columns
-treeview_employees['columns'] = ('First Name', 'Last Name', 'Rut')
+treeview_employees['columns'] = ('Rut', 'First Name', 'Last Name')
 
 # Format Columns
 treeview_employees.column('#0', width=0, stretch=NO)
+treeview_employees.column("Rut", anchor=W, width=140)
 treeview_employees.column("First Name", anchor=W, width=140)
 treeview_employees.column("Last Name", anchor=W, width=140)
-treeview_employees.column("Rut", anchor=W, width=140)
+
 
 # Creating Headings
 treeview_employees.heading("#0", text="", anchor=W)
+treeview_employees.heading("Rut", text="Rut", anchor=W)
 treeview_employees.heading("First Name", text="Nombre", anchor=W)
 treeview_employees.heading("Last Name", text="Apellido", anchor=W)
-treeview_employees.heading("Rut", text="Rut", anchor=W)
+
 
 # Add striped row tags.
 treeview_employees.tag_configure('odd-row', background="White")
@@ -149,18 +151,17 @@ def select_employee_data(e):
 
     # Output to entry boxes
 
-    first_name_entry.insert(0, values[0])
-    second_name_entry.insert(0, values[1])
+    first_name_entry.insert(0, values[1])
+    second_name_entry.insert(0, values[3])
     paternal_lastname_entry.insert(0, values[2])
-    maternal_lastname_entry.insert(0, values[3])
-    employee_rut_entry.insert(0, values[4])
+    maternal_lastname_entry.insert(0, values[4])
+    employee_rut_entry.insert(0, values[0])
     nationality_entry.insert(0, values[5])
     birthday_entry.insert(0, values[6])
     title_entry.insert(0, values[7])
     address_entry.insert(0, values[8])
     mail_entry.insert(0, values[9])
     phone_number_entry.insert(0, values[10])
-
 
 # Add buttons.
 buttons_frame = LabelFrame(left_frame, text="Acciones")
@@ -295,16 +296,17 @@ def select_contract_data(e):
 
     # Output to entry boxes
 
-    contract_employee_rut_entry.insert(0, values[1])
-    employee_fullname_entry.insert(0, values[2])
-    position_entry.insert(0, values[3])
-    salary_entry.insert(0, values[4])
-    project_entry.insert(0, values[5])
-    contract_type_entry.insert(0, values[6])
-    workday_entry.insert(0, values[7])
-    start_date_entry.insert(0, values[8])
-    finish_date_entry.insert(0, values[9])
-    validity_entry.insert(0, values[10])
+    contract_employee_rut_entry.insert(0, values[4])
+    employee_fullname_entry.insert(0, values[5])
+    position_entry.insert(0, values[1])
+    salary_entry.insert(0, values[6])
+    project_entry.insert(0, values[2])
+    contract_type_entry.insert(0, values[7])
+    workday_entry.insert(0, values[8])
+    start_date_entry.insert(0, values[9])
+    finish_date_entry.insert(0, values[10])
+    validity_entry.insert(0, values[3])
+
 
 
 # Add buttons.
@@ -330,76 +332,61 @@ def show_window(data):
     count = 0
     for record in data['employees']:
         if count % 2 == 0:
+            _values = (
+                record['rut'],
+                record['first_name'],
+                record['paternal_last_name'],
+                record['second_name'],
+                record['maternal_last_name'],
+                record['nationality'],
+                record['birth_date'],
+                record['tittle'],
+                record['address'],
+                record['mail'],
+                record['phone_number'])
             treeview_employees.insert(parent='',
                                       index='end',
                                       iid=str(count),
                                       text='',
-                                      values=(record['first_name'],
-                                              record['second_name'],
-                                              record['paternal_last_name'],
-                                              record['maternal_last_name'],
-                                              record['rut'],
-                                              record['nationality'],
-                                              record['birth_date'],
-                                              record['tittle'],
-                                              record['address'],
-                                              record['mail'],
-                                              record['phone_number']),
+                                      values=_values,
                                       tags=('even-row',))
         else:
             treeview_employees.insert(parent='',
                                       index='end',
                                       iid=str(count),
                                       text='',
-                                      values=(record['first_name'],
-                                              record['second_name'],
-                                              record['paternal_last_name'],
-                                              record['maternal_last_name'],
-                                              record['rut'],
-                                              record['nationality'],
-                                              record['birth_date'],
-                                              record['tittle'],
-                                              record['address'],
-                                              record['mail'],
-                                              record['phone_number']),
+                                      values=_values,
                                       tags=('odd-row',))
         # Increment counter
         count += 1
     count += 1
     for record in data['contracts']:
+        _values = (
+            record['contract_number'],
+            record['position'],
+            record['project'],
+            record['validity'],
+            record['employee_rut'],
+            record['employee_fullname'],
+            record['salary'],
+            record['contract_type'],
+            record['workday'],
+            record['start_date'],
+            record['finish_date']
+            )
         if count % 2 == 0:
             treeview_contracts.insert(parent='',
                                       index='end',
                                       iid=str(count),
                                       text='',
-                                      values=(record['contract_number'],
-                                              record['employee_rut'],
-                                              record['employee_fullname'],
-                                              record['position'],
-                                              record['salary'],
-                                              record['project'],
-                                              record['contract_type'],
-                                              record['workday'],
-                                              record['start_date'],
-                                              record['finish_date'],
-                                              record['validity']),
+                                      values=_values,
                                       tags=('even-row',))
         else:
             treeview_contracts.insert(parent='',
                                       index='end',
                                       iid=str(count),
                                       text='',
-                                      values=(record['contract_number'],
-                                              record['employee_rut'],
-                                              record['employee_fullname'],
-                                              record['position'],
-                                              record['salary'],
-                                              record['project'],
-                                              record['contract_type'],
-                                              record['workday'],
-                                              record['start_date'],
-                                              record['finish_date'],
-                                              record['validity']),
+                                      values=_values,
                                       tags=('odd-row',))
         # Increment counter
         count += 1
