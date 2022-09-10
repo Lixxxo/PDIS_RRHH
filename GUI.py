@@ -1,9 +1,7 @@
 from tkinter import *
-from tkinter.ttk import Button, Style, Treeview
+from tkinter.ttk import Button, Treeview
 from resources.Constants import (
     APP_TITLE)
-
-from Utils.Fake_data import fake_db
 
 # Declare the window.
 root = Tk()
@@ -65,8 +63,8 @@ treeview_employees.heading("Last Name", text="Apellido", anchor=W)
 treeview_employees.heading("Rut", text="Rut", anchor=W)
 
 # Add striped row tags.
-treeview_employees.tag_configure('oddrow', background="White")
-treeview_employees.tag_configure('evenrow', background="lightblue")
+treeview_employees.tag_configure('odd-row', background="White")
+treeview_employees.tag_configure('even-row', background="lightblue")
 
 # Add data entry boxes.
 data_frame = LabelFrame(left_frame, text="Datos")
@@ -214,8 +212,8 @@ treeview_contracts.heading("Position", text="Puesto", anchor=W)
 treeview_contracts.heading("Project", text="Proyecto", anchor=W)
 
 # Add striped row tags.
-treeview_contracts.tag_configure('oddrow', background="White")
-treeview_contracts.tag_configure('evenrow', background="lightblue")
+treeview_contracts.tag_configure('odd-row', background="White")
+treeview_contracts.tag_configure('even-row', background="lightblue")
 
 # Add data entry boxes.
 data_frame = LabelFrame(right_frame, text="Datos")
@@ -291,7 +289,10 @@ def show_window(data):
     count = 0
     for record in data['employees']:
         if count % 2 == 0:
-            treeview_employees.insert(parent='', index='end', iid=count, text='',
+            treeview_employees.insert(parent='',
+                                      index='end',
+                                      iid=str(count),
+                                      text='',
                                       values=(record['first_name'],
                                               record['second_name'],
                                               record['paternal_last_name'],
@@ -303,9 +304,12 @@ def show_window(data):
                                               record['address'],
                                               record['mail'],
                                               record['phone_number']),
-                                      tags=('evenrow',))
+                                      tags=('even-row',))
         else:
-            treeview_employees.insert(parent='', index='end', iid=count, text='',
+            treeview_employees.insert(parent='',
+                                      index='end',
+                                      iid=str(count), 
+                                      text='',
                                       values=(record['first_name'],
                                               record['second_name'],
                                               record['paternal_last_name'],
@@ -317,7 +321,7 @@ def show_window(data):
                                               record['address'],
                                               record['mail'],
                                               record['phone_number']),
-                                      tags=('oddrow',))
+                                      tags=('odd-row',))
         # Increment counter
         count += 1
     count += 1
@@ -338,7 +342,7 @@ def show_window(data):
                                               record['start_date'],
                                               record['finish_date'],
                                               record['validity']),
-                                      tags=('evenrow',))
+                                      tags=('even-row',))
         else:
             treeview_contracts.insert(parent='',
                                       index='end',
@@ -355,7 +359,7 @@ def show_window(data):
                                               record['start_date'],
                                               record['finish_date'],
                                               record['validity']),
-                                      tags=('oddrow',))
+                                      tags=('odd-row',))
         # Increment counter
         count += 1
 
