@@ -127,7 +127,7 @@ pnm_entry.grid(row=5, column=3, padx=10, pady=10)
 
 
 # Select Data
-def select_employee_data():
+def select_employee_data(e):
     # Clear entry boxes.
     fn_entry.delete(0, END)
     sn_entry.delete(0, END)
@@ -166,7 +166,7 @@ def select_employee_data():
 buttons_frame = LabelFrame(left_frame, text="Acciones")
 buttons_frame.pack(fill="both", expand=True, padx=10, pady=10)
 
-update_employee_button = Button(buttons_frame, text="Actualizar", command=select_employee_data)
+update_employee_button = Button(buttons_frame, text="Actualizar")
 update_employee_button.grid(row=0, column=0, padx=10, pady=10)
 
 add_employee_button = Button(buttons_frame, text="Agregar")
@@ -174,6 +174,9 @@ add_employee_button.grid(row=0, column=1, padx=10, pady=10)
 
 delete_employee_button = Button(buttons_frame, text="Eliminar")
 delete_employee_button.grid(row=0, column=2, padx=10, pady=10)
+
+# Bind the Treeview
+treeview_employees.bind("<ButtonRelease-1>", select_employee_data)
 
 # Handle Treeview of contracts.
 
@@ -271,7 +274,7 @@ v_entry.grid(row=4, column=3, padx=10, pady=10)
 
 
 # Select Data
-def select_contract_data():
+def select_contract_data(e):
     # Clear entry boxes.
     er_entry.delete(0, END)
     en_entry.delete(0, END)
@@ -308,7 +311,7 @@ def select_contract_data():
 buttons_frame = LabelFrame(right_frame, text="Acciones")
 buttons_frame.pack(fill="both", expand=False, padx=10, pady=10)
 
-update_contract_button = Button(buttons_frame, text="Actualizar", command=select_contract_data)
+update_contract_button = Button(buttons_frame, text="Actualizar")
 update_contract_button.grid(row=0, column=0, padx=10, pady=10)
 
 add_contract_button = Button(buttons_frame, text="Agregar")
@@ -316,6 +319,9 @@ add_contract_button.grid(row=0, column=1, padx=10, pady=10)
 
 delete_contract_button = Button(buttons_frame, text="Eliminar")
 delete_contract_button.grid(row=0, column=2, padx=10, pady=10)
+
+# Bind the Treeview
+treeview_contracts.bind("<ButtonRelease-1>", select_contract_data)
 
 
 def show_window(data):
