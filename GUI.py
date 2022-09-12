@@ -56,13 +56,11 @@ treeview_employees.column("Rut", anchor=W, width=140)
 treeview_employees.column("First Name", anchor=W, width=140)
 treeview_employees.column("Last Name", anchor=W, width=140)
 
-
 # Creating Headings
 treeview_employees.heading("#0", text="", anchor=W)
 treeview_employees.heading("Rut", text="Rut", anchor=W)
 treeview_employees.heading("First Name", text="Nombre", anchor=W)
 treeview_employees.heading("Last Name", text="Apellido", anchor=W)
-
 
 # Add striped row tags.
 treeview_employees.tag_configure('odd-row', background="White")
@@ -162,6 +160,7 @@ def select_employee_data(e):
     address_entry.insert(0, values[8])
     mail_entry.insert(0, values[9])
     phone_number_entry.insert(0, values[10])
+
 
 # Add buttons.
 buttons_frame = LabelFrame(left_frame, text="Acciones")
@@ -275,6 +274,15 @@ validity_label.grid(row=4, column=2, padx=10, pady=10)
 validity_entry = Entry(data_frame)
 validity_entry.grid(row=4, column=3, padx=10, pady=10)
 
+bottom = LabelFrame(root, text="Lectura y escritura de archivos")
+bottom.pack(fill="both", padx=20, pady=20)
+
+read_linking_files_button = Button(bottom, text="Leer archivo de contrataciones")
+read_linking_files_button.pack(padx=10, pady=10, side=LEFT)
+
+read_unlinking_files_button = Button(bottom, text="Leer archivo de contrataciones")
+read_unlinking_files_button.pack(padx=10, pady=10, side=LEFT)
+
 
 # Select Data
 def select_contract_data(e):
@@ -308,7 +316,6 @@ def select_contract_data(e):
     start_date_entry.insert(0, values[9])
     finish_date_entry.insert(0, values[10])
     validity_entry.insert(0, values[3])
-
 
 
 # Add buttons.
@@ -375,7 +382,7 @@ def show_window(data):
             record['workday'],
             record['start_date'],
             record['finish_date']
-            )
+        )
         if count % 2 == 0:
             treeview_contracts.insert(parent='',
                                       index='end',
