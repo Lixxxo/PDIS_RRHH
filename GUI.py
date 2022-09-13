@@ -1,7 +1,9 @@
 from tkinter import *
+from tkinter import filedialog
 from tkinter.ttk import Button, Treeview
 from resources.Constants import (
-    APP_TITLE)
+    APP_TITLE, linking_button_txt, unlinking_button_txt)
+from Requirements.RRHH_impl import (read_linking_file, read_unlinking_file)
 
 # Declare the window.
 root = Tk()
@@ -310,7 +312,6 @@ def select_contract_data(e):
     validity_entry.insert(0, values[3])
 
 
-
 # Add buttons.
 buttons_frame = LabelFrame(right_frame, text="Acciones")
 buttons_frame.pack(fill="both", expand=False, padx=10, pady=10)
@@ -326,6 +327,27 @@ delete_contract_button.grid(row=0, column=2, padx=10, pady=10)
 
 # Bind the Treeview
 treeview_contracts.bind("<ButtonRelease-1>", select_contract_data)
+
+bottom = LabelFrame(root, text="Lectura de archivos")
+bottom.pack(padx=20, pady=20, expand=True, fill="both")
+
+
+def select_linking_file():
+    _filepath = filedialog.askopenfilename(initialdir="/", title="Select A File",
+                                               filetypes=(("Archivos csv", "*.csv"),))
+    read_linking_file(_filepath)
+
+
+def select_unlinking_file():
+    _filepath = filedialog.askopenfilename(initialdir="/", title="Select A File",
+                                     filetypes=(("Archivos csv", "*.csv"),))
+    read_unlinking_file(_filepath)
+
+
+linking_button = Button(bottom, text=linking_button_txt, command=select_linking_file)
+linking_button.pack(side=LEFT)
+unlinking_button = Button(bottom, text=unlinking_button_txt, command=select_unlinking_file)
+unlinking_button.pack(side=LEFT)
 
 
 def show_window(data):
