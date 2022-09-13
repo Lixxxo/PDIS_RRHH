@@ -108,3 +108,4 @@ db.json
 # idea folder, uncomment if you don't need it
 # .idea
 .idea/encodings.xml
+.idea/misc.xml
