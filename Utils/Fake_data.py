@@ -31,7 +31,7 @@ def fake_db():
         _lastname1 = choice(lastnames)
         _lastname2 = choice(lastnames)
         _nationality = choice(nationalities)
-        _birth_date = '-'.join([str(randint(0, 31)), str("0" + str(randint(0, 10))), str(randint(1973, 1999))])
+        _birth_date = '-'.join([str(randint(0, 31)), str("0" + str(randint(1, 10))), str(randint(1973, 1999))])
         _mail = _name[0].lower() + _lastname1.lower() + "@.ucn.cl"
         _phone = "9" + str(randint(11_111_111, 99_999_999))
 
@@ -54,8 +54,8 @@ def fake_db():
             _project = choice(project)
             _contract_type = choice(contract_types)
             _workday = choice(workdays)
-            _start_date = '-'.join([str(randint(0, 31)), str("0" + str(randint(0, 10))), str(randint(2019, 2024))])
-            _finish_date = '-'.join([str(randint(0, 31)), str("0" + str(randint(0, 10))), str(randint(2019, 2024))])
+            _start_date = '-'.join([str(randint(0, 31)), str("0" + str(randint(1, 10))), str(randint(2019, 2024))])
+            _finish_date = '-'.join([str(randint(0, 31)), str("0" + str(randint(1, 10))), str(randint(2019, 2024))])
             c = Contract(
                 employee_rut=e.rut,
                 employee_fullname=e.fullname,
