@@ -4,19 +4,27 @@ from Model.Contract import Contract
 
 # region Requerimiento 2
 
-def add_employee():
+def add_employee(employee: Employee):
     pass
 
 
-def edit_employee():
+def edit_employee(employee: Employee, index: int):
     pass
 
 
-def add_contract(rut: str):
+def delete_employee(index: int):
     pass
 
 
-def edit_contract(rut: str):
+def add_contract(contract: Contract):
+    pass
+
+
+def edit_contract(contract: Contract, index: int):
+    pass
+
+
+def delete_contract(index: int):
     pass
 
 
