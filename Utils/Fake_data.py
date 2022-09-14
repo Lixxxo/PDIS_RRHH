@@ -68,9 +68,9 @@ def fake_db():
                 finish_date=_finish_date,
                 validity=False
             )
-            data["contracts"].append(c.__dict__())
+            data["contracts"].append(c.__dict__)
 
-        data["employees"].append(e.__dict__())
+        data["employees"].append(e.__dict__)
 
     with open('db.json', 'w') as outfile:
         json.dump(data, outfile, indent=4, ensure_ascii=False)
