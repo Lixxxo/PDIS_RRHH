@@ -1,31 +1,38 @@
 from Model.Employee import Employee
 from Model.Contract import Contract
+from Logic.RRHH_System import RRHHSystem
 
 
 # region Requerimiento 2
 
 def add_employee(employee: Employee):
-    pass
+
+    e = next((item for item in RRHHSystem.employees if item.no_digit_rut == employee.no_digit_rut))
+    if e:
+        # TODO: Show alert message (Pop-up)
+        print("💀💀💀")
+        return
+    RRHHSystem.employees.append(employee)
 
 
 def edit_employee(employee: Employee, index: int):
-    pass
+    RRHHSystem.employees[index] = employee
 
 
 def delete_employee(index: int):
-    pass
+    RRHHSystem.employees.pop(index)
 
 
 def add_contract(contract: Contract):
-    pass
+    RRHHSystem.contracts.append(contract)
 
 
 def edit_contract(contract: Contract, index: int):
-    pass
+    RRHHSystem.contracts[index] = contract
 
 
 def delete_contract(index: int):
-    pass
+    RRHHSystem.contracts.pop(index)
 
 
 # endregion
