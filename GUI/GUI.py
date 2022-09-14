@@ -1,11 +1,8 @@
 from tkinter import *
-from tkinter import filedialog
 from tkinter.ttk import Button, Treeview
 
 from resources.Constants import (
-    APP_TITLE, linking_button_txt, unlinking_button_txt)
-from Requirements.RRHH_impl import (read_linking_file, read_unlinking_file)
-
+    APP_TITLE)
 
 # Declare the window.
 root = Tk()
@@ -126,7 +123,6 @@ phone_number_label.grid(row=5, column=2, padx=10, pady=10)
 phone_number_entry = Entry(data_frame)
 phone_number_entry.grid(row=5, column=3, padx=10, pady=10)
 
-
 # Add buttons.
 buttons_frame = LabelFrame(left_frame, text="Acciones")
 buttons_frame.pack(fill="both", expand=True, padx=10, pady=10)
@@ -139,7 +135,6 @@ add_employee_button.grid(row=0, column=1, padx=10, pady=10)
 
 delete_employee_button = Button(buttons_frame, text="Eliminar")
 delete_employee_button.grid(row=0, column=2, padx=10, pady=10)
-
 
 # Handle Treeview of contracts.
 
@@ -240,8 +235,6 @@ validity_entry.grid(row=4, column=3, padx=10, pady=10)
 bottom = LabelFrame(root, text="Lectura y escritura de archivos")
 bottom.pack(fill="both", padx=20, pady=20)
 
-
-
 # Add buttons.
 buttons_frame = LabelFrame(right_frame, text="Acciones")
 buttons_frame.pack(fill="both", expand=False, padx=10, pady=10)
@@ -257,70 +250,4 @@ delete_contract_button.grid(row=0, column=2, padx=10, pady=10)
 
 
 def show_window():
-    # Add data to the screen.
-
-    '''
-    count = 0
-    for record in data['employees']:
-        if count % 2 == 0:
-            _values = (
-                record['rut'],
-                record['first_name'],
-                record['paternal_last_name'],
-                record['second_name'],
-                record['maternal_last_name'],
-                record['nationality'],
-                record['birth_date'],
-                record['tittle'],
-                record['address'],
-                record['mail'],
-                record['phone_number'])
-            treeview_employees.insert(parent='',
-                                      index='end',
-                                      iid=str(count),
-                                      text='',
-                                      values=_values,
-                                      tags=('even-row',))
-        else:
-            treeview_employees.insert(parent='',
-                                      index='end',
-                                      iid=str(count),
-                                      text='',
-                                      values=_values,
-                                      tags=('odd-row',))
-        # Increment counter
-        count += 1
-    count += 1
-    for record in data['contracts']:
-        _values = (
-            record['contract_number'],
-            record['position'],
-            record['project'],
-            record['validity'],
-            record['employee_rut'],
-            record['employee_fullname'],
-            record['salary'],
-            record['contract_type'],
-            record['workday'],
-            record['start_date'],
-            record['finish_date']
-        )
-        if count % 2 == 0:
-            treeview_contracts.insert(parent='',
-                                      index='end',
-                                      iid=str(count),
-                                      text='',
-                                      values=_values,
-                                      tags=('even-row',))
-        else:
-            treeview_contracts.insert(parent='',
-                                      index='end',
-                                      iid=str(count),
-                                      text='',
-                                      values=_values,
-                                      tags=('odd-row',))
-        # Increment counter
-        count += 1
-    '''
-    # Run the main window.
     root.mainloop()
