@@ -1,2 +1,6 @@
-employees = []
-contracts = []
+
+class RRHHSystem:
+    employees = []
+    contracts = []
+
+
