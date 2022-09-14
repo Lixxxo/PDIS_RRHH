@@ -172,7 +172,9 @@ def run_gui():
     read_unlinking_files_button = Button(bottom, text=unlinking_button_txt, command=select_unlinking_file)
     read_unlinking_files_button.pack(padx=10, pady=10, side=LEFT)
 
+    fill_treeview()
+
     # Show GUI.
     show_window()
 
-    fill_treeview()
+
