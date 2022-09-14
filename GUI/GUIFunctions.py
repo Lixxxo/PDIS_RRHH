@@ -143,13 +143,14 @@ def select_contract_data(e):
     contract_employee_rut_entry.insert(0, values[0])
     employee_fullname_entry.insert(0, values[1])
     position_entry.insert(0, values[2])
-    salary_entry.insert(0, values[3])
-    project_entry.insert(0, values[4])
-    contract_type_entry.insert(0, values[8])
-    workday_entry.insert(0, values[9])
+    project_entry.insert(0, values[3])
     start_date_entry.insert(0, values[4])
     finish_date_entry.insert(0, values[5])
     validity_entry.insert(0, values[6])
+    salary_entry.insert(0, values[7])
+    contract_type_entry.insert(0, values[8])
+    workday_entry.insert(0, values[9])
+
 
 
 
