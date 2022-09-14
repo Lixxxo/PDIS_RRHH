@@ -1,4 +1,4 @@
-import GUI
+from GUI.GUIFunctions import run_gui
 from json import load
 
 
@@ -7,7 +7,7 @@ def run():
     with open('db.json') as f:
         data = load(f)
 
-    GUI.show_window(data)
+    run_gui()
 
 
 if __name__ == "__main__":

@@ -24,11 +24,11 @@ def edit_contract(rut: str):
 
 # region Requerimiento 3
 
-def read_linking_file():
+def read_linking_file(filepath):
     pass
 
 
-def read_unlinking_file():
+def read_unlinking_file(filepath):
     pass
 
 
