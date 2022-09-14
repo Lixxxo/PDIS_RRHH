@@ -5,8 +5,13 @@ from Logic.RRHH_System import RRHHSystem
 from Model.Employee import Employee
 from Model.Contract import Contract
 
+from Utils.Fake_data import fake_db
+
 
 def run():
+
+    # Create a fake db
+    # fake_db()
 
     try:
         with open('db.json') as f:

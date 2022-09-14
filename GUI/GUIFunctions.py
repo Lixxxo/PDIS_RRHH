@@ -6,14 +6,14 @@ from GUI.GUI import first_name_entry, second_name_entry, paternal_lastname_entry
     treeview_employees, show_window, contract_employee_rut_entry, employee_fullname_entry, position_entry, salary_entry, \
     project_entry, contract_type_entry, workday_entry, start_date_entry, finish_date_entry, validity_entry, \
     treeview_contracts, bottom
-from Logic.RRHH_System import employees, contracts
+from Logic.RRHH_System import RRHHSystem
 from Requirements.RRHH_impl import read_linking_file, read_unlinking_file
 from resources.Constants import linking_button_txt, unlinking_button_txt
 
 
 def fill_treeview():
     count = 0
-    for employee in employees:
+    for employee in RRHHSystem.employees:
         _values = (
             employee.rut,
             employee.first_name,
@@ -43,9 +43,9 @@ def fill_treeview():
         # Increment counter
         count += 1
     count += 1
-    for contract in contracts:
+    for contract in RRHHSystem.contracts:
         _values = (
-            contract.contract_number,
+            #contract.contract_number,
             contract.position,
             contract.project,
             contract.validity,
