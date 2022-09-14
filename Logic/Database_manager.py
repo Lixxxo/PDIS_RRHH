@@ -12,7 +12,7 @@ class JsonManager:
     @classmethod
     def create(cls, db_name: str):
         with open(db_name, 'w') as outfile:
-            data = {"employee": [], "contracts": []}
+            data = {"employees": [], "contracts": []}
             dump(data, outfile, indent=4, ensure_ascii=False)
             return data
 
@@ -58,13 +58,13 @@ class JsonManager:
                 )
             )
 
-    @staticmethod
-    def save(self, db_name: str):
+    @classmethod
+    def save(cls, db_name: str, system: RRHHSystem):
         with open(db_name, 'w') as outfile:
             # Converts to dict each data
-            _employee = [i.__dict__ for i in RRHHSystem.employees]
-            _contract = [i.__dict__ for i in RRHHSystem.contracts]
-            data = {"employee": _employee, "contracts": _contract}
+            _employees = [i.__dict__ for i in system.employees]
+            _contracts = [i.__dict__ for i in system.contracts]
+            data = {"employees": _employees, "contracts": _contracts}
 
             # write json file
             dump(data, outfile, indent=4, ensure_ascii=False)
