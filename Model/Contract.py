@@ -97,6 +97,7 @@ class Contract:
     def validity(self, value):
         self.__validity = value
 
+    @property
     def __dict__(self):
         return {"employee_rut": self.__employee_rut,
                 "employee_fullname": self.__employee_fullname, "position": self.__position,
