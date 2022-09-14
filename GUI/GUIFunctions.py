@@ -8,6 +8,7 @@ from GUI.GUI import first_name_entry, second_name_entry, paternal_lastname_entry
     treeview_contracts, bottom, buttons_frame_contracts, buttons_frame_employee, validity_var
 
 from Logic.RRHH_System import RRHHSystem
+from Logic.Database_manager import JsonManager
 from Model.Contract import Contract
 from Model.Employee import Employee
 from Requirements.RRHH_impl import read_linking_file, read_unlinking_file, edit_employee, add_employee, delete_employee, \
@@ -21,7 +22,8 @@ class SelectedData:
     alert = False
 
 
-def fill_treeview_employees():
+def fill_treeview_employees(system: RRHHSystem):
+    JsonManager.save("test.json", system)
     for item in treeview_employees.get_children():
         treeview_employees.delete(item)
 
@@ -58,7 +60,8 @@ def fill_treeview_employees():
         count += 1
 
 
-def fill_treeview_contracts():
+def fill_treeview_contracts(system: RRHHSystem):
+    JsonManager.save('test.json', system)
     for item in treeview_contracts.get_children():
         treeview_contracts.delete(item)
 
@@ -215,7 +218,7 @@ def select_unlinking_file():
     read_unlinking_file(_filepath)
 
 
-def run_gui():
+def run_gui(system: RRHHSystem):
     # Capture click up event.
     treeview_employees.bind("<ButtonRelease-1>", select_employee_data)
     treeview_contracts.bind("<ButtonRelease-1>", select_contract_data)
@@ -229,38 +232,38 @@ def run_gui():
     update_employee_button = Button(buttons_frame_employee, text="Actualizar",
                                     command=lambda: [edit_employee(new_employee(),
                                                                    SelectedData.employee_index),
-                                                     fill_treeview_employees()])
+                                                     fill_treeview_employees(system)])
     update_employee_button.grid(row=0, column=0, padx=10, pady=10)
 
     add_employee_button = Button(buttons_frame_employee, text="Agregar",
                                  command=lambda: [add_employee(new_employee()),
-                                                  fill_treeview_contracts()])
+                                                  fill_treeview_contracts(system)])
     add_employee_button.grid(row=0, column=1, padx=10, pady=10)
 
     delete_employee_button = Button(buttons_frame_employee, text="Eliminar",
                                     command=lambda: [delete_employee(SelectedData.employee_index),
-                                                     fill_treeview_employees()])
+                                                     fill_treeview_employees(system)])
     delete_employee_button.grid(row=0, column=2, padx=10, pady=10)
 
     update_contract_button = Button(buttons_frame_contracts, text="Actualizar",
                                     command=lambda: [edit_contract(new_contract(),
                                                                    SelectedData.contract_index),
-                                                     fill_treeview_contracts()])
+                                                     fill_treeview_contracts(system)])
     update_contract_button.grid(row=0, column=0, padx=10, pady=10)
 
     add_contract_button = Button(buttons_frame_contracts, text="Agregar",
                                  command=lambda: [add_contract(new_contract()),
-                                                  fill_treeview_contracts()])
+                                                  fill_treeview_contracts(system)])
     add_contract_button.grid(row=0, column=1, padx=10, pady=10)
 
     delete_contract_button = Button(buttons_frame_contracts, text="Eliminar",
                                     command=lambda: [delete_contract(SelectedData.contract_index),
-                                                     fill_treeview_contracts()])
+                                                     fill_treeview_contracts(system)])
     delete_contract_button.grid(row=0, column=2, padx=10, pady=10)
 
-    fill_treeview_employees()
+    fill_treeview_employees(system)
 
-    fill_treeview_contracts()
+    fill_treeview_contracts(system)
 
     # Show GUI.
     show_window()

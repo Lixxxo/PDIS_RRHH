@@ -17,7 +17,7 @@ class JsonManager:
             return data
 
     @classmethod
-    def load_file(cls, db_path: str):
+    def load_file(cls, db_path: str, system: RRHHSystem):
         try:
             open(db_path)
         except FileNotFoundError:
@@ -27,7 +27,7 @@ class JsonManager:
             data = load(infile)
 
         for r in data["employees"]:
-            RRHHSystem.employees.append(
+            system.employees.append(
                 Employee(
                     no_digit_rut=r["rut"].split("-")[0],
                     first_name=r["first_name"],
@@ -43,7 +43,7 @@ class JsonManager:
                 )
             )
         for r in data["contracts"]:
-            RRHHSystem.contracts.append(
+            system.contracts.append(
                 Contract(
                     employee_rut=r["employee_rut"],
                     employee_fullname=r["employee_fullname"],
