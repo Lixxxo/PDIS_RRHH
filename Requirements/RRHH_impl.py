@@ -7,11 +7,16 @@ from Logic.RRHH_System import RRHHSystem
 
 def add_employee(employee: Employee):
 
+    if not RRHHSystem.employees:
+        RRHHSystem.employees.append(employee)
+        return
+    print(RRHHSystem.employees)
     e = next((item for item in RRHHSystem.employees if item.no_digit_rut == employee.no_digit_rut))
     if e:
         # TODO: Show alert message (Pop-up)
-        print("💀💀💀")
+        print("Employee already exists")
         return
+
     RRHHSystem.employees.append(employee)
 
 
