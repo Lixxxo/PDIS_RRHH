@@ -1,5 +1,6 @@
-from tkinter import Tk, LEFT, X, RIGHT, Y, NO, W
-from tkinter.ttk import Button, Treeview, Frame, LabelFrame, Scrollbar, Label, Entry
+from tkinter import Tk, LEFT, X, RIGHT, Y, NO, W, StringVar
+from tkinter.ttk import Button, Treeview, Frame, LabelFrame, Scrollbar, Label, Entry, OptionMenu
+from tkcalendar import DateEntry
 
 from resources.Constants import (
     APP_TITLE)
@@ -112,7 +113,7 @@ nationality_entry.grid(row=2, column=3, padx=10, pady=10)
 
 birthday_label = Label(data_frame, text="Fecha de nacimiento")
 birthday_label.grid(row=3, column=2, padx=10, pady=10)
-birthday_entry = Entry(data_frame)
+birthday_entry = DateEntry(data_frame, date_pattern='dd-MM-yyyy')
 birthday_entry.grid(row=3, column=3, padx=10, pady=10)
 
 title_label = Label(data_frame, text="Título")
@@ -189,7 +190,7 @@ treeview_contracts.heading("Position", text="Puesto", anchor=W)
 treeview_contracts.heading("Project", text="Proyecto", anchor=W)
 treeview_contracts.heading("Start_date", text="Fecha de Inicio", anchor=W)
 treeview_contracts.heading("Finish_date", text="Fecha de Término", anchor=W)
-treeview_contracts.heading("Validity", text="Vigencia", anchor=W)
+treeview_contracts.heading("Validity", text="Vigente", anchor=W)
 
 # Add striped row tags.
 treeview_contracts.tag_configure('odd-row', background="White")
@@ -236,18 +237,36 @@ workday_entry.grid(row=3, column=1, padx=10, pady=10)
 
 start_date_label = Label(data_frame, text="Fecha de Inicio")
 start_date_label.grid(row=3, column=2, padx=10, pady=10)
-start_date_entry = Entry(data_frame)
+# start_date_entry = Entry(data_frame)
+#start_date_entry.grid(row=3, column=3, padx=10, pady=10)
+
+start_date_entry = DateEntry(data_frame, selectmode='day', date_pattern='dd-MM-yyyy')
 start_date_entry.grid(row=3, column=3, padx=10, pady=10)
 
 finish_date_label = Label(data_frame, text="Fecha de Término")
 finish_date_label.grid(row=4, column=0, padx=10, pady=10)
-finish_date_entry = Entry(data_frame)
+finish_date_entry = DateEntry(data_frame, selectmode="day", date_pattern='dd-MM-yyyy')
 finish_date_entry.grid(row=4, column=1, padx=10, pady=10)
 
-validity_label = Label(data_frame, text="Validez")
+
+
+'''
+validity_label = Label(data_frame, text="Vigente")
 validity_label.grid(row=4, column=2, padx=10, pady=10)
 validity_entry = Entry(data_frame)
 validity_entry.grid(row=4, column=3, padx=10, pady=10)
+
+'''
+
+validity_var = StringVar(data_frame)
+# default value
+
+options_list = ["Seleccione una opción", "Sí", "No"]
+
+validity_label = Label(data_frame, text="Vigente")
+validity_label.grid(row=4, column=2, padx=10, pady=10)
+validity_option_menu = OptionMenu(data_frame, validity_var, *options_list)
+validity_option_menu.grid(row=4, column=3, padx=10, pady=10)
 
 bottom = LabelFrame(header, text="Lectura y escritura de archivos")
 bottom.pack(fill="both", padx=20, pady=20)
