@@ -1,4 +1,4 @@
-from tkinter import Tk, LEFT, X, RIGHT, Y, NO, W, StringVar
+from tkinter import Tk, LEFT, X, RIGHT, Y, NO, W, StringVar, DISABLED, NORMAL
 from tkinter.ttk import Button, Treeview, Frame, LabelFrame, Scrollbar, Label, Entry, OptionMenu
 from tkcalendar import DateEntry
 
@@ -112,24 +112,25 @@ nationality_entry = Entry(data_frame)
 nationality_entry.grid(row=2, column=3, padx=10, pady=10)
 
 birthday_label = Label(data_frame, text="Fecha de nacimiento")
-birthday_label.grid(row=3, column=2, padx=10, pady=10)
-birthday_entry = DateEntry(data_frame, date_pattern='dd-MM-yyyy')
-birthday_entry.grid(row=3, column=3, padx=10, pady=10)
+birthday_label.grid(row=3, column=0, padx=10, pady=10)
+birthday_entry = DateEntry(data_frame, date_pattern='dd-MM-yyyy', width=18)
+birthday_entry.delete(0, "end")
+birthday_entry.grid(row=3, column=1, padx=10, pady=10)
 
 title_label = Label(data_frame, text="Título")
-title_label.grid(row=3, column=0, padx=10, pady=10)
+title_label.grid(row=3, column=2, padx=10, pady=10)
 title_entry = Entry(data_frame)
-title_entry.grid(row=3, column=1, padx=10, pady=10)
+title_entry.grid(row=3, column=3, padx=10, pady=10)
 
 address_label = Label(data_frame, text="Dirección")
-address_label.grid(row=4, column=2, padx=10, pady=10)
+address_label.grid(row=4, column=0, padx=10, pady=10)
 address_entry = Entry(data_frame)
-address_entry.grid(row=4, column=3, padx=10, pady=10)
+address_entry.grid(row=4, column=1, padx=10, pady=10)
 
 mail_label = Label(data_frame, text="Correo")
-mail_label.grid(row=4, column=0, padx=10, pady=10)
+mail_label.grid(row=4, column=2, padx=10, pady=10)
 mail_entry = Entry(data_frame)
-mail_entry.grid(row=4, column=1, padx=10, pady=10)
+mail_entry.grid(row=4, column=3, padx=10, pady=10)
 
 phone_number_label = Label(data_frame, text="Número de teléfono")
 phone_number_label.grid(row=5, column=2, padx=10, pady=10)
@@ -202,12 +203,12 @@ data_frame.pack(fill="both", expand=True, padx=10, pady=10)
 
 contract_employee_rut_label = Label(data_frame, text="Rut Trabajador")
 contract_employee_rut_label.grid(row=0, column=0, padx=10, pady=10)
-contract_employee_rut_entry = Entry(data_frame)
+contract_employee_rut_entry = Entry(data_frame, state=NORMAL)
 contract_employee_rut_entry.grid(row=0, column=1, padx=10, pady=10)
 
 employee_fullname_label = Label(data_frame, text="Nombre Trabajador")
 employee_fullname_label.grid(row=0, column=2, padx=10, pady=10)
-employee_fullname_entry = Entry(data_frame)
+employee_fullname_entry = Entry(data_frame, state=NORMAL)
 employee_fullname_entry.grid(row=0, column=3, padx=10, pady=10)
 
 position_label = Label(data_frame, text="Puesto")
@@ -225,43 +226,47 @@ project_label.grid(row=2, column=0, padx=10, pady=10)
 project_entry = Entry(data_frame)
 project_entry.grid(row=2, column=1, padx=10, pady=10)
 
-contract_type_label = Label(data_frame, text="Tipo de Contrato")
+
+contract_type_var = StringVar(data_frame)
+
+options_list = ["Seleccione", "Indefinido", "Temporal"]
+
+contract_type_label = Label(data_frame, text="Tipo de contrato")
 contract_type_label.grid(row=2, column=2, padx=10, pady=10)
-contract_type_entry = Entry(data_frame)
+contract_type_entry = OptionMenu(data_frame, contract_type_var, *options_list)
 contract_type_entry.grid(row=2, column=3, padx=10, pady=10)
+
+#contract_type_label = Label(data_frame, text="Tipo de Contrato")
+#contract_type_label.grid(row=2, column=2, padx=10, pady=10)
+#contract_type_entry = Entry(data_frame)
+#contract_type_entry.grid(row=2, column=3, padx=10, pady=10)
+
+workday_var = StringVar(data_frame)
+
+options_list = ["Seleccione", "Media", "Completa"]
 
 workday_label = Label(data_frame, text="Jornada")
 workday_label.grid(row=3, column=0, padx=10, pady=10)
-workday_entry = Entry(data_frame)
+workday_entry = OptionMenu(data_frame, workday_var, *options_list)
 workday_entry.grid(row=3, column=1, padx=10, pady=10)
 
 start_date_label = Label(data_frame, text="Fecha de Inicio")
 start_date_label.grid(row=3, column=2, padx=10, pady=10)
-# start_date_entry = Entry(data_frame)
-#start_date_entry.grid(row=3, column=3, padx=10, pady=10)
 
-start_date_entry = DateEntry(data_frame, selectmode='day', date_pattern='dd-MM-yyyy')
+start_date_entry = DateEntry(data_frame, selectmode='day', date_pattern='dd-MM-yyyy', width=18)
+start_date_entry.delete(0, "end")
 start_date_entry.grid(row=3, column=3, padx=10, pady=10)
 
 finish_date_label = Label(data_frame, text="Fecha de Término")
 finish_date_label.grid(row=4, column=0, padx=10, pady=10)
-finish_date_entry = DateEntry(data_frame, selectmode="day", date_pattern='dd-MM-yyyy')
+finish_date_entry = DateEntry(data_frame, selectmode="day", date_pattern='dd-MM-yyyy', width=18)
+finish_date_entry.delete(0, "end")
 finish_date_entry.grid(row=4, column=1, padx=10, pady=10)
 
 
-
-'''
-validity_label = Label(data_frame, text="Vigente")
-validity_label.grid(row=4, column=2, padx=10, pady=10)
-validity_entry = Entry(data_frame)
-validity_entry.grid(row=4, column=3, padx=10, pady=10)
-
-'''
-
 validity_var = StringVar(data_frame)
-# default value
 
-options_list = ["Seleccione una opción", "Sí", "No"]
+options_list = ["Seleccione", "Sí", "No"]
 
 validity_label = Label(data_frame, text="Vigente")
 validity_label.grid(row=4, column=2, padx=10, pady=10)
