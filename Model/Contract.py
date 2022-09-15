@@ -2,10 +2,14 @@ import datetime
 
 
 # Single contract class
+class ContractCounter:
+    last_id = 0
+
+
 class Contract:
     def __init__(self, employee_rut: str, employee_fullname: str, position: str, salary: int, project: str,
                  contract_type: str, workday: str, start_date: str, finish_date: str, validity: bool):
-
+        self.__id = ContractCounter.last_id
         self.__employee_rut = employee_rut
         self.__employee_fullname = employee_fullname
         self.__position = position
@@ -16,6 +20,8 @@ class Contract:
         self.__start_date = start_date
         self.__finish_date = finish_date
         self.__validity = validity
+
+        ContractCounter.last_id += 1
 
     @property
     def employee_rut(self):
@@ -56,6 +62,10 @@ class Contract:
     @property
     def validity(self):
         return self.__validity
+
+    @property
+    def id(self):
+        return self.__id
 
     @employee_rut.setter
     def employee_rut(self, value):
