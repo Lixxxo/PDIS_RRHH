@@ -139,6 +139,24 @@ def select_employee_data(event):
 
 
 def new_employee():
+    print(employee_rut_entry.get())
+    rut = employee_rut_entry.get().split('-')[0]
+    print(rut)
+
+    rut = rut.replace('.', '')
+
+    print(rut)
+
+    try:
+        rut = int(rut)
+    except ValueError:
+        print("Invalid Rut. Not integer.")
+        return
+
+    if not isinstance(int(rut), int):
+        print("Invalid rut.")
+        return
+
     return Employee(
         no_digit_rut=employee_rut_entry.get().split('-')[0],
         first_name=first_name_entry.get(),

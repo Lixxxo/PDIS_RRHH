@@ -60,7 +60,8 @@ class Employee:
         return self.__phone_number
 
     @no_digit_rut.setter
-    def no_digit_rut(self, value):
+    def no_digit_rut(self, value: int):
+
         self.__no_digit_rut = value
 
     @first_name.setter
@@ -105,6 +106,10 @@ class Employee:
 
     @property
     def rut_digit(self):
+
+        if isinstance(self.__no_digit_rut, int):
+            return
+
         # https://gist.github.com/rbonvall/464824
         from itertools import cycle
 

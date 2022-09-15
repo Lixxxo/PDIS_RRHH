@@ -6,21 +6,23 @@ from Logic.RRHH_System import RRHHSystem
 # region Requerimiento 2
 
 def add_employee(employee: Employee):
-
     if not RRHHSystem.employees:
         RRHHSystem.employees.append(employee)
         return
-    print(RRHHSystem.employees)
     e = next((item for item in RRHHSystem.employees if item.no_digit_rut == employee.no_digit_rut))
     if e:
         # TODO: Show alert message (Pop-up)
-        print("Employee already exists")
+        print("Employee already exists.")
         return
 
     RRHHSystem.employees.append(employee)
 
 
 def edit_employee(employee: Employee, index: int):
+    if employee is None:
+        print("Invalid employee.")
+        return
+
     RRHHSystem.employees[index] = employee
 
 
@@ -29,7 +31,10 @@ def delete_employee(index: int):
 
 
 def add_contract(contract: Contract):
-    RRHHSystem.contracts.append(contract)
+    if not RRHHSystem.contracts:
+        RRHHSystem.contracts.append(contract)
+        return
+    print("Contract already exists!")
 
 
 def edit_contract(contract: Contract, index: int):
