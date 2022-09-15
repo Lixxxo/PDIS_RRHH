@@ -133,6 +133,7 @@ class Employee:
 
         return _fullname
 
+    @property
     def __dict__(self):
         return {"first_name": self.__first_name, "second_name": self.__second_name,
                 "paternal_last_name": self.__paternal_last_name, "maternal_last_name": self.__maternal_last_name,

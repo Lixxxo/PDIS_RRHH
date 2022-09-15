@@ -1,13 +1,25 @@
 from GUI.GUIFunctions import run_gui
-from json import load
+from Logic.Database_manager import JsonManager
+from Logic.RRHH_System import RRHHSystem
+from Utils.Fake_data import fake_db
 
 
 def run():
-    # Todo: verify if the db.json exists.
-    with open('db.json') as f:
-        data = load(f)
 
-    run_gui()
+    # Create a fake db
+    # fake_db()
+    rhs = RRHHSystem()
+    _db_name = 'db.json'
+    json_dict = JsonManager.load_file(db_path=_db_name, system=rhs)
+
+    if json_dict is not None:
+        print(f'No database with name {_db_name}.')
+        # JsonManager.create(db_name=_db_name)
+        # Create a fake db
+        print(f'{_db_name} created.')
+
+    # print(json_dict)
+    run_gui(rhs)
 
 
 if __name__ == "__main__":

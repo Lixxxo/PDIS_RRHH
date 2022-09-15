@@ -1,5 +1,6 @@
-from tkinter import *
-from tkinter.ttk import Button, Treeview
+from tkinter import Tk, LEFT, X, RIGHT, Y, NO, W, StringVar
+from tkinter.ttk import Button, Treeview, Frame, LabelFrame, Scrollbar, Label, Entry, OptionMenu
+from tkcalendar import DateEntry
 
 from resources.Constants import (
     APP_TITLE)
@@ -8,7 +9,7 @@ from resources.Constants import (
 root = Tk()
 
 # Lock the size of the window.
-root.resizable(width=True, height=True)
+root.resizable(width=False, height=False)
 
 # Set iconbitmap
 root.iconbitmap("resources/RRHH.ico")
@@ -20,8 +21,9 @@ root.title(APP_TITLE)
 header = Frame(root)
 header.pack()
 
+
 # Declare container for both treeview (employees and contracts).
-upper_container = Frame(root)
+upper_container = Frame(header)
 upper_container.pack(pady=10, padx=10)
 
 # Handle Treeview of employees
@@ -46,19 +48,30 @@ treeview_employees.pack(fill=X, padx=10)
 treeview_scroll.config(command=treeview_employees.yview)
 
 # Define Columns
-treeview_employees['columns'] = ('Rut', 'First Name', 'Last Name')
+treeview_employees['columns'] = ('Rut',
+                                 'First_name',
+                                 'Paternal_last_name',
+                                 'Title',
+                                 'Mail',
+                                 'Phone_number')
 
 # Format Columns
 treeview_employees.column('#0', width=0, stretch=NO)
-treeview_employees.column("Rut", anchor=W, width=140)
-treeview_employees.column("First Name", anchor=W, width=140)
-treeview_employees.column("Last Name", anchor=W, width=140)
+treeview_employees.column("Rut", anchor=W, width=100)
+treeview_employees.column("First_name", anchor=W, width=100)
+treeview_employees.column("Paternal_last_name", anchor=W, width=100)
+treeview_employees.column("Title", anchor=W, width=100)
+treeview_employees.column("Mail", anchor=W, width=100)
+treeview_employees.column("Phone_number", anchor=W, width=150)
 
 # Creating Headings
 treeview_employees.heading("#0", text="", anchor=W)
 treeview_employees.heading("Rut", text="Rut", anchor=W)
-treeview_employees.heading("First Name", text="Nombre", anchor=W)
-treeview_employees.heading("Last Name", text="Apellido", anchor=W)
+treeview_employees.heading("First_name", text="Nombre", anchor=W)
+treeview_employees.heading("Paternal_last_name", text="Apellido Paterno", anchor=W)
+treeview_employees.heading("Title", text="Título", anchor=W)
+treeview_employees.heading("Mail", text="Correo", anchor=W)
+treeview_employees.heading("Phone_number", text="Número de Teléfono", anchor=W)
 
 # Add striped row tags.
 treeview_employees.tag_configure('odd-row', background="White")
@@ -100,7 +113,7 @@ nationality_entry.grid(row=2, column=3, padx=10, pady=10)
 
 birthday_label = Label(data_frame, text="Fecha de nacimiento")
 birthday_label.grid(row=3, column=2, padx=10, pady=10)
-birthday_entry = Entry(data_frame)
+birthday_entry = DateEntry(data_frame, date_pattern='dd-MM-yyyy')
 birthday_entry.grid(row=3, column=3, padx=10, pady=10)
 
 title_label = Label(data_frame, text="Título")
@@ -124,17 +137,9 @@ phone_number_entry = Entry(data_frame)
 phone_number_entry.grid(row=5, column=3, padx=10, pady=10)
 
 # Add buttons.
-buttons_frame = LabelFrame(left_frame, text="Acciones")
-buttons_frame.pack(fill="both", expand=True, padx=10, pady=10)
+buttons_frame_employee = LabelFrame(left_frame, text="Acciones")
+buttons_frame_employee.pack(fill="both", expand=True, padx=10, pady=10)
 
-update_employee_button = Button(buttons_frame, text="Actualizar")
-update_employee_button.grid(row=0, column=0, padx=10, pady=10)
-
-add_employee_button = Button(buttons_frame, text="Agregar")
-add_employee_button.grid(row=0, column=1, padx=10, pady=10)
-
-delete_employee_button = Button(buttons_frame, text="Eliminar")
-delete_employee_button.grid(row=0, column=2, padx=10, pady=10)
 
 # Handle Treeview of contracts.
 
@@ -158,21 +163,34 @@ treeview_contracts.pack(fill=X, padx=10)
 treeview_scroll.config(command=treeview_contracts.yview)
 
 # Define Columns
-treeview_contracts['columns'] = ('Contract ID', 'Position', 'Project', 'Validity')
+treeview_contracts['columns'] = ('Employee_rut',
+                                 'Employee_fullname',
+                                 'Position',
+                                 'Project',
+                                 'Start_date',
+                                 'Finish_date',
+                                 'Validity')
 
 # Format Columns
 treeview_contracts.column('#0', width=0, stretch=NO)
-treeview_contracts.column("Contract ID", anchor=W, width=140)
-treeview_contracts.column("Position", anchor=W, width=140)
-treeview_contracts.column("Project", anchor=W, width=140)
-treeview_contracts.column("Validity", anchor=W, width=140)
+treeview_contracts.column("Employee_rut", anchor=W, width=100)
+treeview_contracts.column("Employee_fullname", anchor=W, width=150)
+treeview_contracts.column("Position", anchor=W, width=100)
+treeview_contracts.column("Project", anchor=W, width=100)
+treeview_contracts.column("Start_date", anchor=W, width=120)
+treeview_contracts.column("Finish_date", anchor=W, width=120)
+treeview_contracts.column("Validity", anchor=W, width=100)
+
 
 # Creating Headings
 treeview_contracts.heading("#0", text="", anchor=W)
-treeview_contracts.heading("Contract ID", text="ID", anchor=W)
+treeview_contracts.heading("Employee_rut", text="Rut", anchor=W)
+treeview_contracts.heading("Employee_fullname", text="Nombre", anchor=W)
 treeview_contracts.heading("Position", text="Puesto", anchor=W)
 treeview_contracts.heading("Project", text="Proyecto", anchor=W)
-treeview_contracts.heading("Validity", text="Vigencia", anchor=W)
+treeview_contracts.heading("Start_date", text="Fecha de Inicio", anchor=W)
+treeview_contracts.heading("Finish_date", text="Fecha de Término", anchor=W)
+treeview_contracts.heading("Validity", text="Vigente", anchor=W)
 
 # Add striped row tags.
 treeview_contracts.tag_configure('odd-row', background="White")
@@ -219,34 +237,43 @@ workday_entry.grid(row=3, column=1, padx=10, pady=10)
 
 start_date_label = Label(data_frame, text="Fecha de Inicio")
 start_date_label.grid(row=3, column=2, padx=10, pady=10)
-start_date_entry = Entry(data_frame)
+# start_date_entry = Entry(data_frame)
+#start_date_entry.grid(row=3, column=3, padx=10, pady=10)
+
+start_date_entry = DateEntry(data_frame, selectmode='day', date_pattern='dd-MM-yyyy')
 start_date_entry.grid(row=3, column=3, padx=10, pady=10)
 
 finish_date_label = Label(data_frame, text="Fecha de Término")
 finish_date_label.grid(row=4, column=0, padx=10, pady=10)
-finish_date_entry = Entry(data_frame)
+finish_date_entry = DateEntry(data_frame, selectmode="day", date_pattern='dd-MM-yyyy')
 finish_date_entry.grid(row=4, column=1, padx=10, pady=10)
 
-validity_label = Label(data_frame, text="Validez")
+
+
+'''
+validity_label = Label(data_frame, text="Vigente")
 validity_label.grid(row=4, column=2, padx=10, pady=10)
 validity_entry = Entry(data_frame)
 validity_entry.grid(row=4, column=3, padx=10, pady=10)
 
-bottom = LabelFrame(root, text="Lectura y escritura de archivos")
+'''
+
+validity_var = StringVar(data_frame)
+# default value
+
+options_list = ["Seleccione una opción", "Sí", "No"]
+
+validity_label = Label(data_frame, text="Vigente")
+validity_label.grid(row=4, column=2, padx=10, pady=10)
+validity_option_menu = OptionMenu(data_frame, validity_var, *options_list)
+validity_option_menu.grid(row=4, column=3, padx=10, pady=10)
+
+bottom = LabelFrame(header, text="Lectura y escritura de archivos")
 bottom.pack(fill="both", padx=20, pady=20)
 
 # Add buttons.
-buttons_frame = LabelFrame(right_frame, text="Acciones")
-buttons_frame.pack(fill="both", expand=False, padx=10, pady=10)
-
-update_contract_button = Button(buttons_frame, text="Actualizar")
-update_contract_button.grid(row=0, column=0, padx=10, pady=10)
-
-add_contract_button = Button(buttons_frame, text="Agregar")
-add_contract_button.grid(row=0, column=1, padx=10, pady=10)
-
-delete_contract_button = Button(buttons_frame, text="Eliminar")
-delete_contract_button.grid(row=0, column=2, padx=10, pady=10)
+buttons_frame_contracts = LabelFrame(right_frame, text="Acciones")
+buttons_frame_contracts.pack(fill="both", expand=False, padx=10, pady=10)
 
 
 def show_window():
